@@ -38,8 +38,32 @@ if croppedH != imageH:
     #crops the height towards the center if the image height and cropped height do not match
     area = (0, (imageH - croppedH) / 2,imageW, (imageH + croppedH) / 2)
     baseImage = sourceImage.crop(area)
+    imageH = sourceImage.size[1]
 else:
     baseImage = sourceImage
+
+#calculate number of rows
+rows = int(imageH/tileH)
+
+tileColors = []
+for i in range(rows):
+    rowColorList = []
+
+    y1 = int(i * tileH)
+    y2 = int((i + 1) * tileH)
+    if i == rows - 1:
+        y2 = imageH
+
+    for j in range(cols):
+        x1 = int(j * tileW)
+        x2 = int((j + 1) * tileW)
+        if j == rows - 1:
+            x2 = imageW
+
+        currTile = baseImage.crop((x1, y1, x2, y2))
+        #avgColor =
+
+
 
 
 #TODO
